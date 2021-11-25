@@ -57,6 +57,7 @@ nns (1): allow for not set synthetic attribute (workaround to a compiler bug)
 uto (1): consider nameless types as java.lang.Object (workaround to a compiler architecture flaw)
 udv (1): reconstruct variable names from debug information, if present
 rer (1): remove empty exception ranges
+nco (0): no comment output
 fdi (1): de-inline finally structures
 mpm (0): maximum allowed processing time per decompiled method, in seconds. 0 means no upper limit
 ren (0): rename ambiguous (resp. obfuscated) classes and class elements
