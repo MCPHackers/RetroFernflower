@@ -501,27 +501,27 @@ public class FunctionExprent extends Exprent {
         return wrapOperandString(lstOperands.get(0), true, indent, tracer).append(" instanceof ").append(wrapOperandString(lstOperands.get(1), true, indent, tracer));
       case FUNCTION_LCMP: // shouldn't appear in the final code
         return wrapOperandString(lstOperands.get(0), true, indent, tracer).prepend("__lcmp__(")
-                 .append(",")
+                 .append(", ")
                  .append(wrapOperandString(lstOperands.get(1), true, indent, tracer))
                  .append(")");
       case FUNCTION_FCMPL: // shouldn't appear in the final code
         return wrapOperandString(lstOperands.get(0), true, indent, tracer).prepend("__fcmpl__(")
-                 .append(",")
+                 .append(", ")
                  .append(wrapOperandString(lstOperands.get(1), true, indent, tracer))
                  .append(")");
       case FUNCTION_FCMPG: // shouldn't appear in the final code
         return wrapOperandString(lstOperands.get(0), true, indent, tracer).prepend("__fcmpg__(")
-                 .append(",")
+                 .append(", ")
                  .append(wrapOperandString(lstOperands.get(1), true, indent, tracer))
                  .append(")");
       case FUNCTION_DCMPL: // shouldn't appear in the final code
         return wrapOperandString(lstOperands.get(0), true, indent, tracer).prepend("__dcmpl__(")
-                 .append(",")
+                 .append(", ")
                  .append(wrapOperandString(lstOperands.get(1), true, indent, tracer))
                  .append(")");
       case FUNCTION_DCMPG: // shouldn't appear in the final code
         return wrapOperandString(lstOperands.get(0), true, indent, tracer).prepend("__dcmpg__(")
-                 .append(",")
+                 .append(", ")
                  .append(wrapOperandString(lstOperands.get(1), true, indent, tracer))
                  .append(")");
     }

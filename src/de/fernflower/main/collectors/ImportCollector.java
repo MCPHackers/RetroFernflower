@@ -105,7 +105,7 @@ public class ImportCollector {
     else if (!mapSimpleNames.containsKey(nshort)) {
       mapSimpleNames.put(nshort, npackage);
 
-      if (!imported) {
+      if (!imported || npackage.equals(currentPackagePoint)) {
         setNotImportedNames.add(nshort);
       }
     }

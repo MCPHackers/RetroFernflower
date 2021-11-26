@@ -47,9 +47,6 @@ public class InitializerProcessor {
     // This can happen if InnerClasses attributes are erased
     liftConstructor(wrapper);
     
-    // Make sure super() or this() is the first statement
-    fixSuperAndThis(wrapper);
-    
     if (DecompilerContext.getOption(IFernflowerPreferences.HIDE_EMPTY_SUPER)) {
       hideEmptySuper(wrapper);
     }
@@ -80,7 +77,7 @@ public class InitializerProcessor {
               if (fexpr.getClassname().equals(wrapper.getClassStruct().qualifiedName)) {
                 StructField structField = wrapper.getClassStruct().getField(fexpr.getName(), fexpr.getDescriptor().descriptorString);
                 if (structField != null && structField.hasModifier(CodeConstants.ACC_FINAL)) {
-                  action = 1;
+                  action = 0;
                 }
               }
             }
@@ -89,10 +86,10 @@ public class InitializerProcessor {
                    isInvocationInitConstructor((InvocationExprent)exprent, meth, wrapper, true)) {
             // this() or super()
             lstExprents.add(0, lstExprents.remove(index));
-            action = 2;
+            action = 1;
           }
 
-          if (action != 1) {
+          if (action != 0) {
             break;
           }
 
@@ -101,29 +98,6 @@ public class InitializerProcessor {
       }
     }
   }
-
-
-  private static void fixSuperAndThis(ClassWrapper wrapper) {
-
-	    for (MethodWrapper meth : wrapper.getMethods()) {
-	      if (CodeConstants.INIT_NAME.equals(meth.methodStruct.getName()) && meth.root != null) {
-	        Statement firstdata = findFirstData(meth.root);
-	        if (firstdata == null || firstdata.getExprents().isEmpty()) {
-	          return;
-	        }
-
-	        for (int index = 0; index < firstdata.getExprents().size(); index++)
-	        {
-		        Exprent exprent = firstdata.getExprents().get(index);
-		        if (exprent.type == Exprent.EXPRENT_INVOCATION) {
-		          if (isInvocationInitConstructor((InvocationExprent)exprent, meth, wrapper, true)) {
-		            firstdata.getExprents().add(0, firstdata.getExprents().remove(index));
-		          }
-		        }
-	        }
-	      }
-	    }
-	  }
   
   private static void hideEmptySuper(ClassWrapper wrapper) {
 
