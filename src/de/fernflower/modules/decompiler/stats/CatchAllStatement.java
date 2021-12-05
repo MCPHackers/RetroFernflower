@@ -148,7 +148,7 @@ public class CatchAllStatement extends Statement {
       tracer.incrementCurrentSourceLine();
     }
 
-    buf.append(ExprProcessor.jmpWrapper(handler, indent + 1 + (monitor != null ? 1 : 0), true, tracer));
+    buf.append(ExprProcessor.jmpWrapper(handler, indent + 1 + (monitor != null ? 1 : 0), false, tracer));
 
     if (monitor != null) {
       buf.appendIndent(indent + 1).append("}").appendLineSeparator();

@@ -142,7 +142,7 @@ public class VarDefinitionHelper {
         continue;
       }
 
-      varproc.setVarName(new VarVersionPair(index.intValue(), 0), vc.getFreeName(index,varproc.getVarType(new VarVersionPair(index.intValue(), 0))));
+      varproc.setVarName(new VarVersionPair(index.intValue(), 0), vc.getFreeName(index, varproc.getVarType(new VarVersionPair(index.intValue(), 0))));
 
       // special case for
       if (stat.type == Statement.TYPE_DO) {

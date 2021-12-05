@@ -114,8 +114,12 @@ public class VarExprent extends Exprent {
 	  String[] s = type.toString().toLowerCase().split("/");
 	  String s1 = s[s.length-1];
 	  int i = s1.indexOf(";");
-	  if(i >= 0)
-		  s1 = s1.substring(0, i);
+	  if(i < 0)
+		i = s1.length();
+	  s1 = s1.substring(0, i);
+	  while (s1.startsWith("[")) {
+		 s1 = s1.substring(1);
+	  }
 	  return s1;
   }
 
