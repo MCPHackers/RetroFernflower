@@ -18,6 +18,9 @@ package de.fernflower.main.collectors;
 import java.util.HashSet;
 import java.util.Set;
 
+import de.fernflower.modules.decompiler.exps.VarExprent;
+import de.fernflower.struct.gen.VarType;
+
 public class VarNamesCollector {
 
   private final Set<String> usedNames = new HashSet<String>();
@@ -30,6 +33,10 @@ public class VarNamesCollector {
 
   public void addName(String value) {
     usedNames.add(value);
+  }
+
+  public String getFreeName(int index, VarType type) {
+    return getFreeName(VarExprent.getTypeString(type) + index);
   }
 
   public String getFreeName(int index) {

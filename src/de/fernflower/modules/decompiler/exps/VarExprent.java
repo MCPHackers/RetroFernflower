@@ -103,10 +103,20 @@ public class VarExprent extends Exprent {
         }
         buffer.append(ExprProcessor.getCastTypeName(getVarType())).append(" ");
       }
-      buffer.append(name == null ? ("var" + index + (version == 0 ? "" : "_" + version)) : name);
+      buffer.append(name == null ? (getTypeString(varType) + index + (version == 0 ? "" : "_" + version)) : name);
     }
 
     return buffer;
+  }
+  
+  public static String getTypeString(VarType type)
+  {
+	  String[] s = type.toString().toLowerCase().split("/");
+	  String s1 = s[s.length-1];
+	  int i = s1.indexOf(";");
+	  if(i >= 0)
+		  s1 = s1.substring(0, i);
+	  return s1;
   }
 
   @Override

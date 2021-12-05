@@ -109,6 +109,7 @@ public class ContextUnit {
 
         // classes
         for (int i = 0; i < classes.size(); i++) {
+          DecompilerContext.getLogger().updateCounters(i, classes.size());
           StructClass cl = classes.get(i);
           String entryName = decompiledData.getClassEntryName(cl, classEntries.get(i));
           if (entryName != null) {
@@ -145,6 +146,7 @@ public class ContextUnit {
 
         // classes
         for (int i = 0; i < classes.size(); i++) {
+          DecompilerContext.getLogger().updateCounters(i, classes.size());
           StructClass cl = classes.get(i);
           String entryName = decompiledData.getClassEntryName(cl, classEntries.get(i));
           if (entryName != null) {

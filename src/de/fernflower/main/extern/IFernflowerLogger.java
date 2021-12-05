@@ -40,6 +40,8 @@ public abstract class IFernflowerLogger {
   public abstract void writeMessage(String message, Severity severity);
 
   public abstract void writeMessage(String message, Throwable t);
+  
+  public void updateCounters(int i, int i2) { }
 
   public void startReadingClass(String className) { }
 
