@@ -32,7 +32,7 @@
   <target name="dist" depends="init,compile">
     <jar jarfile="${dist}" compress="true" basedir="${out}" includes="**/*.class">
       <manifest>
-        <attribute name="Main-Class" value="org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler"/>
+        <attribute name="Main-Class" value="de.fernflower.main.decompiler.ConsoleDecompiler"/>
       </manifest>
     </jar>
   </target>
