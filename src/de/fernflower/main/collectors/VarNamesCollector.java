@@ -36,7 +36,7 @@ public class VarNamesCollector {
   }
 
   public String getFreeName(int index, VarType type) {
-    return getFreeName(VarExprent.getTypeString(type) + index);
+    return getFreeName(type.getTypeName() + index);
   }
 
   public String getFreeName(int index) {

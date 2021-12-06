@@ -150,6 +150,15 @@ public class VarType {  // TODO: optimize switch
         throw new RuntimeException("Invalid type");
     }
   }
+  
+
+  public String getTypeName()
+  {
+	  String[] s = value.split("/");
+	  String s1 = s[s.length-1];
+	  s1 = Character.toLowerCase(s1.charAt(0)) + s1.substring(1);
+	  return s1;
+  }
 
   private static int getStackSize(int type, int arrayDim) {
     if (arrayDim > 0) {

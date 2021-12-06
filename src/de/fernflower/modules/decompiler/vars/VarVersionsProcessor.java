@@ -140,8 +140,8 @@ public class VarVersionsProcessor {
           type = type.type == CodeConstants.TYPE_BYTECHAR ? VarType.VARTYPE_BYTE : VarType.VARTYPE_SHORT;
         }
         mapExprentMinTypes.put(paar, type);
-        //} else if(type.type == CodeConstants.TYPE_CHAR && (maxType == null || maxType.type == CodeConstants.TYPE_INT)) { // when possible, lift char to int
-        //	mapExprentMinTypes.put(paar, VarType.VARTYPE_INT);
+//        } else if(type.type == CodeConstants.TYPE_CHAR && (maxType == null || maxType.type == CodeConstants.TYPE_INT)) { // when possible, lift char to int
+//        	mapExprentMinTypes.put(paar, VarType.VARTYPE_INT);
       }
       else if (type.type == CodeConstants.TYPE_NULL) {
         mapExprentMinTypes.put(paar, VarType.VARTYPE_OBJECT);
