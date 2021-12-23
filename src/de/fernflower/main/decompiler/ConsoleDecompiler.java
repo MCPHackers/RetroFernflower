@@ -24,6 +24,7 @@ import de.fernflower.util.InterpreterUtil;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Function;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
@@ -45,9 +46,34 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
     List<File> lstSources = new ArrayList<File>();
     List<File> lstLibraries = new ArrayList<File>();
 
+    SaveType userSaveType = null;
     boolean isOption = true;
     for (int i = 0; i < args.length - 1; ++i) { // last parameter - destination
       String arg = args[i];
+
+      switch (arg) {
+        case "--file":
+          if (userSaveType != null) {
+            throw new RuntimeException("Multiple save types specified");
+          }
+
+          userSaveType = SaveType.FILE;
+          continue;
+        case "--folder":
+          if (userSaveType != null) {
+            throw new RuntimeException("Multiple save types specified");
+          }
+
+          userSaveType = SaveType.FOLDER;
+          continue;
+        case "--legacy-saving":
+          if (userSaveType != null) {
+            throw new RuntimeException("Multiple save types specified");
+          }
+
+          userSaveType = SaveType.LEGACY_CONSOLEDECOMPILER;
+          continue;
+      }
 
       if (isOption && arg.length() > 5 && arg.charAt(0) == '-' && arg.charAt(4) == '=') {
         String value = arg.substring(5);
@@ -77,14 +103,27 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
       return;
     }
 
-    File destination = new File(args[args.length - 1]);
-    if (!destination.isDirectory()) {
-      System.out.println("error: destination '" + destination + "' is not a directory");
-      return;
+    String name = args[args.length - 1];
+
+    SaveType saveType = SaveType.FOLDER;
+    File destination = new File(name);
+
+    if (userSaveType == null) {
+      if (destination.getName().contains(".zip") || destination.getName().contains(".jar")) {
+        saveType = SaveType.FILE;
+
+        if (destination.getParentFile() != null) {
+          destination.getParentFile().mkdirs();
+        }
+      } else {
+        destination.mkdirs();
+      }
+    } else {
+      saveType = userSaveType;
     }
 
     PrintStreamLogger logger = new PrintStreamLogger(System.out);
-    ConsoleDecompiler decompiler = new ConsoleDecompiler(destination, mapOptions, logger);
+    ConsoleDecompiler decompiler = new ConsoleDecompiler(destination, mapOptions, logger, saveType);
 
     for (File source : lstSources) {
       decompiler.addSpace(source, true);
@@ -120,10 +159,15 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
   public ConsoleDecompiler(File destination, Map<String, Object> options) {
     this(destination, options, new PrintStreamLogger(System.out));
   }
-
+  
   protected ConsoleDecompiler(File destination, Map<String, Object> options, IFernflowerLogger logger) {
+    this(destination, options, logger, destination.isDirectory() ? SaveType.LEGACY_CONSOLEDECOMPILER : SaveType.FILE);
+  }
+
+  protected ConsoleDecompiler(File destination, Map<String, Object> options, IFernflowerLogger logger, SaveType saveType) {
     root = destination;
-    fernflower = new Fernflower(this, this, options, logger);
+    //fernflower = new Fernflower(this, this, options, logger);
+    fernflower = new Fernflower(this, saveType == SaveType.LEGACY_CONSOLEDECOMPILER ? this : saveType.getSaver().apply(destination), options, logger);
   }
 
   public void addSpace(File file, boolean isOwn) {
@@ -304,6 +348,23 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
     }
     catch (IOException ex) {
       DecompilerContext.getLogger().writeMessage("Cannot close " + file, IFernflowerLogger.Severity.WARN);
+    }
+  }
+
+  public enum SaveType {
+    LEGACY_CONSOLEDECOMPILER(null), // handled separately
+    FOLDER(DirectoryResultSaver::new),
+    FILE(SingleFileSaver::new);
+
+    private final Function<File, IResultSaver> saver;
+
+    SaveType(Function<File, IResultSaver> saver) {
+
+      this.saver = saver;
+    }
+
+    public Function<File, IResultSaver> getSaver() {
+      return saver;
     }
   }
 }
