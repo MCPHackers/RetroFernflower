@@ -20,6 +20,7 @@ import de.fernflower.main.Fernflower;
 import de.fernflower.main.extern.IBytecodeProvider;
 import de.fernflower.main.extern.IFernflowerLogger;
 import de.fernflower.main.extern.IResultSaver;
+import de.fernflower.main.providers.RetroMCPJavadocProvider;
 import de.fernflower.util.InterpreterUtil;
 
 import java.io.*;
@@ -82,6 +83,11 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
         }
         else if ("false".equalsIgnoreCase(value)) {
           value = "0";
+        }
+
+        if (arg.startsWith("-jds")) {
+          mapOptions.put(arg.substring(1, 4), new RetroMCPJavadocProvider(new File(value)));
+          continue;
         }
 
         mapOptions.put(arg.substring(1, 4), value);

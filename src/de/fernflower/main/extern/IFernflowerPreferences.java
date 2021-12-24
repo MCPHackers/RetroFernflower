@@ -15,10 +15,13 @@
  */
 package de.fernflower.main.extern;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.fernflower.main.providers.IJavadocProvider;
+import de.fernflower.main.providers.RetroMCPJavadocProvider;
 import de.fernflower.util.InterpreterUtil;
 
 public interface IFernflowerPreferences {
@@ -53,6 +56,8 @@ public interface IFernflowerPreferences {
   String INDENT_STRING = "ind";
   String BANNER = "ban";
   String NO_COMMENT_OUTPUT = "nco";
+
+  String JAVADOC_PROVIDER = IJavadocProvider.PROPERTY_NAME;
 
   String DUMP_ORIGINAL_LINES = "__dump_original_lines__";
   String UNIT_TEST_MODE = "__unit_test_mode__";
@@ -93,5 +98,6 @@ public interface IFernflowerPreferences {
     put(NO_COMMENT_OUTPUT, "0");
     put(UNIT_TEST_MODE, "0");
     put(DUMP_ORIGINAL_LINES, "0");
+    //put(JAVADOC_PROVIDER, new RetroMCPJavadocProvider(new File("client.javadoc")));
   }});
 }

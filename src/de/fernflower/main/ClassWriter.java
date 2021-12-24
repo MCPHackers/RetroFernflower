@@ -20,6 +20,7 @@ import de.fernflower.main.ClassesProcessor.ClassNode;
 import de.fernflower.main.collectors.BytecodeMappingTracer;
 import de.fernflower.main.extern.IFernflowerLogger;
 import de.fernflower.main.extern.IFernflowerPreferences;
+import de.fernflower.main.providers.IJavadocProvider;
 import de.fernflower.main.rels.ClassWrapper;
 import de.fernflower.main.rels.MethodWrapper;
 import de.fernflower.modules.decompiler.ExprProcessor;
@@ -48,10 +49,12 @@ import java.util.*;
 public class ClassWriter {
   private final ClassReference14Processor ref14processor;
   private final PoolInterceptor interceptor;
+  private final IJavadocProvider javadocProvider;
 
   public ClassWriter() {
     ref14processor = new ClassReference14Processor();
     interceptor = DecompilerContext.getPoolInterceptor();
+    javadocProvider = (IJavadocProvider) DecompilerContext.getProperty(IJavadocProvider.PROPERTY_NAME);
   }
 
   private void invokeProcessors(ClassNode node) {
@@ -308,6 +311,10 @@ public class ClassWriter {
       appendComment(buffer, "synthetic class", indent);
     }
 
+    if (javadocProvider != null) {
+      appendJavadoc(buffer, javadocProvider.getClassDoc(cl), indent);
+    }
+
     appendAnnotations(buffer, cl, indent);
 
     buffer.appendIndent(indent);
@@ -402,6 +409,10 @@ public class ClassWriter {
 
     if (fd.isSynthetic()) {
       appendComment(buffer, "synthetic field", indent);
+    }
+
+    if (javadocProvider != null) {
+      appendJavadoc(buffer, javadocProvider.getFieldDoc(cl, fd), indent);
     }
 
     appendAnnotations(buffer, fd, indent);
@@ -623,6 +634,10 @@ public class ClassWriter {
       }
       if (isBridge) {
         appendComment(buffer, "bridge method", indent);
+      }
+
+      if (javadocProvider != null) {
+        appendJavadoc(buffer, javadocProvider.getMethodDoc(cl, mt), indent);
       }
 
       appendAnnotations(buffer, mt, indent);
@@ -1041,5 +1056,14 @@ public class ClassWriter {
     }
 
     buffer.append('>');
+  }
+
+  private static void appendJavadoc(TextBuffer buffer, String javaDoc, int indent) {
+    if (javaDoc == null) return;
+    buffer.appendIndent(indent).append("/**").appendLineSeparator();
+    for (String s : javaDoc.split("\n")) {
+      buffer.appendIndent(indent).append(" * ").append(s).appendLineSeparator();
+    }
+    buffer.appendIndent(indent).append(" */").appendLineSeparator();
   }
 }
