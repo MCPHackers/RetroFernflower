@@ -19,6 +19,7 @@ import de.fernflower.main.Fernflower;
 import de.fernflower.main.extern.IBytecodeProvider;
 import de.fernflower.main.extern.IFernflowerLogger;
 import de.fernflower.main.extern.IResultSaver;
+import de.fernflower.main.providers.IJavadocProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +30,11 @@ public class BaseDecompiler {
   private final Fernflower fernflower;
 
   public BaseDecompiler(IBytecodeProvider provider, IResultSaver saver, Map<String, Object> options, IFernflowerLogger logger) {
-    fernflower = new Fernflower(provider, saver, options, logger);
+    this(provider, saver, options, logger, null);
+  }
+
+  public BaseDecompiler(IBytecodeProvider provider, IResultSaver saver, Map<String, Object> options, IFernflowerLogger logger, IJavadocProvider javadocProvider) {
+    fernflower = new Fernflower(provider, saver, options, logger, javadocProvider);
   }
 
   public void addSpace(File file, boolean isOwn) throws IOException {

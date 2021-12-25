@@ -21,6 +21,7 @@ import de.fernflower.main.collectors.ImportCollector;
 import de.fernflower.main.collectors.VarNamesCollector;
 import de.fernflower.main.extern.IFernflowerLogger;
 import de.fernflower.main.extern.IFernflowerPreferences;
+import de.fernflower.main.providers.IJavadocProvider;
 import de.fernflower.modules.renamer.PoolInterceptor;
 import de.fernflower.struct.StructContext;
 
@@ -48,6 +49,7 @@ public class DecompilerContext {
   private PoolInterceptor poolInterceptor;
   private IFernflowerLogger logger;
   private BytecodeSourceMapper bytecodeSourceMapper;
+  private IJavadocProvider javadocProvider;
 
   private DecompilerContext(Map<String, Object> properties) {
     this.properties = properties;
@@ -157,5 +159,13 @@ public class DecompilerContext {
   public static String getNewLineSeparator() {
     return getOption(IFernflowerPreferences.NEW_LINE_SEPARATOR) ?
            IFernflowerPreferences.LINE_SEPARATOR_UNX : IFernflowerPreferences.LINE_SEPARATOR_WIN;
+  }
+
+  public static IJavadocProvider getJavadocProvider() {
+    return getCurrentContext().javadocProvider;
+  }
+
+  public static void setJavadocProvider(IJavadocProvider javadocProvider) {
+    getCurrentContext().javadocProvider = javadocProvider;
   }
 }

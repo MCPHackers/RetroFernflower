@@ -54,7 +54,7 @@ public class ClassWriter {
   public ClassWriter() {
     ref14processor = new ClassReference14Processor();
     interceptor = DecompilerContext.getPoolInterceptor();
-    javadocProvider = (IJavadocProvider) DecompilerContext.getProperty(IJavadocProvider.PROPERTY_NAME);
+    javadocProvider = DecompilerContext.getJavadocProvider();
   }
 
   private void invokeProcessors(ClassNode node) {

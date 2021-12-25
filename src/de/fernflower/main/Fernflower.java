@@ -21,6 +21,7 @@ import de.fernflower.main.extern.IBytecodeProvider;
 import de.fernflower.main.extern.IFernflowerLogger;
 import de.fernflower.main.extern.IFernflowerPreferences;
 import de.fernflower.main.extern.IResultSaver;
+import de.fernflower.main.providers.IJavadocProvider;
 import de.fernflower.modules.renamer.IdentifierConverter;
 import de.fernflower.struct.IDecompiledData;
 import de.fernflower.struct.StructClass;
@@ -34,11 +35,12 @@ public class Fernflower implements IDecompiledData {
   private final StructContext structContext;
   private ClassesProcessor classesProcessor;
 
-  public Fernflower(IBytecodeProvider provider, IResultSaver saver, Map<String, Object> options, IFernflowerLogger logger) {
+  public Fernflower(IBytecodeProvider provider, IResultSaver saver, Map<String, Object> options, IFernflowerLogger logger, IJavadocProvider javadocProvider) {
     structContext = new StructContext(saver, this, new LazyLoader(provider));
     DecompilerContext.initContext(options);
     DecompilerContext.setCounterContainer(new CounterContainer());
     DecompilerContext.setLogger(logger);
+    DecompilerContext.setJavadocProvider(javadocProvider);
   }
 
   public void decompileContext() {

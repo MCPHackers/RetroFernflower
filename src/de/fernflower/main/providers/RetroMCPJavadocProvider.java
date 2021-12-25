@@ -12,14 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RetroMCPJavadocProvider implements IJavadocProvider {
-    private final File javadocFile;
 
     private static final Map<String, String> classes = new HashMap<>();
     private static final Map<String, String> methods = new HashMap<>();
     private static final Map<String, String> fields = new HashMap<>();
 
     public RetroMCPJavadocProvider(File javadocFile) {
-        this.javadocFile = javadocFile;
         readMappings(javadocFile);
     }
 

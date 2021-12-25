@@ -20,6 +20,7 @@ import de.fernflower.main.Fernflower;
 import de.fernflower.main.extern.IBytecodeProvider;
 import de.fernflower.main.extern.IFernflowerLogger;
 import de.fernflower.main.extern.IResultSaver;
+import de.fernflower.main.providers.IJavadocProvider;
 import de.fernflower.main.providers.RetroMCPJavadocProvider;
 import de.fernflower.util.InterpreterUtil;
 
@@ -48,6 +49,7 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
     List<File> lstLibraries = new ArrayList<File>();
 
     SaveType userSaveType = null;
+    IJavadocProvider jdprovider = null;
     boolean isOption = true;
     for (int i = 0; i < args.length - 1; ++i) { // last parameter - destination
       String arg = args[i];
@@ -84,13 +86,11 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
         else if ("false".equalsIgnoreCase(value)) {
           value = "0";
         }
-
-        if (arg.startsWith("-jds")) {
-          mapOptions.put(arg.substring(1, 4), new RetroMCPJavadocProvider(new File(value)));
-          continue;
+        if(arg.substring(1, 4) != "jds") {
+        	mapOptions.put(arg.substring(1, 4), value);
+        } else {
+        	jdprovider = new RetroMCPJavadocProvider(new File(value));
         }
-
-        mapOptions.put(arg.substring(1, 4), value);
       }
       else {
         isOption = false;
@@ -129,7 +129,7 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
     }
 
     PrintStreamLogger logger = new PrintStreamLogger(System.out);
-    ConsoleDecompiler decompiler = new ConsoleDecompiler(destination, mapOptions, logger, saveType);
+    ConsoleDecompiler decompiler = new ConsoleDecompiler(destination, mapOptions, logger, saveType, jdprovider);
 
     for (File source : lstSources) {
       decompiler.addSpace(source, true);
@@ -171,9 +171,12 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
   }
 
   protected ConsoleDecompiler(File destination, Map<String, Object> options, IFernflowerLogger logger, SaveType saveType) {
+	this(destination, options, logger, saveType, null);
+  }
+
+  protected ConsoleDecompiler(File destination, Map<String, Object> options, IFernflowerLogger logger, SaveType saveType, IJavadocProvider javadocProvider) {
     root = destination;
-    //fernflower = new Fernflower(this, this, options, logger);
-    fernflower = new Fernflower(this, saveType == SaveType.LEGACY_CONSOLEDECOMPILER ? this : saveType.getSaver().apply(destination), options, logger);
+    fernflower = new Fernflower(this, saveType == SaveType.LEGACY_CONSOLEDECOMPILER ? this : saveType.getSaver().apply(destination), options, logger, javadocProvider);
   }
 
   public void addSpace(File file, boolean isOwn) {
