@@ -18,7 +18,6 @@ package de.fernflower.main.collectors;
 import java.util.HashSet;
 import java.util.Set;
 
-import de.fernflower.modules.decompiler.exps.VarExprent;
 import de.fernflower.struct.gen.VarType;
 
 public class VarNamesCollector {

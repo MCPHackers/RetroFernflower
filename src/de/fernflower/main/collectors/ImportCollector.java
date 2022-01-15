@@ -118,12 +118,16 @@ public class ImportCollector {
 
     List<String> imports = packImports();
 
+    String prevImport = null;
     for (String s : imports) {
+      if(prevImport != null && !s.startsWith(prevImport)) {
+          buffer.appendLineSeparator();
+      }
       buffer.append("import ");
       buffer.append(s);
       buffer.append(";");
       buffer.appendLineSeparator();
-
+      prevImport = s.substring(0, s.indexOf('.'));
       importlines_written++;
     }
 
