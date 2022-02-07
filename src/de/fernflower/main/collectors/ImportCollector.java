@@ -100,7 +100,7 @@ public class ImportCollector {
     if (existsDefaultClass ||
         (mapSimpleNames.containsKey(nshort) && !npackage.equals(mapSimpleNames.get(nshort)))) {
       //  don't return full name because if the class is a inner class, full name refers to the parent full name, not the child full name
-      return retname == null ? fullname : (npackage + "." + retname);
+      return retname == null ? fullname : ((!npackage.isEmpty() ? (npackage + ".") : "") + retname);
     }
     else if (!mapSimpleNames.containsKey(nshort)) {
       mapSimpleNames.put(nshort, npackage);
