@@ -240,9 +240,7 @@ public class MatchEngine {
     Object old_value = variables.get(name);
     if(old_value == null) {
       variables.put(name, value);
-    } else if(!old_value.equals(value)) {
-      return false;
-    }
+    } else return old_value.equals(value);
     
     return true;
   }

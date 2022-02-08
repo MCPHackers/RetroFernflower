@@ -279,7 +279,7 @@ public class LabelHelper {
           Statement stlast = swst.getCaseStatements().get(last);
           if (stlast.getExprents() != null && stlast.getExprents().isEmpty()) {
             StatEdge edge = stlast.getAllSuccessorEdges().get(0);
-            mapEdges.put(edge.getDestination(), new ArrayList<StatEdge>(Arrays.asList(new StatEdge[]{edge})));
+            mapEdges.put(edge.getDestination(), new ArrayList<StatEdge>(Arrays.asList(edge)));
           }
           else {
             mapEdges = setExplicitEdges(stlast);
@@ -340,7 +340,7 @@ public class LabelHelper {
             edge.explicit = false;
           }
 
-          mapEdges.put(newedge.getDestination(), new ArrayList<StatEdge>(Arrays.asList(new StatEdge[]{newedge})));
+          mapEdges.put(newedge.getDestination(), new ArrayList<StatEdge>(Arrays.asList(newedge)));
         }
       }
     }
@@ -388,7 +388,7 @@ public class LabelHelper {
     }
 
     if (statedge != null) {
-      mapEdges.put(statedge.getDestination(), new ArrayList<StatEdge>(Arrays.asList(new StatEdge[]{statedge})));
+      mapEdges.put(statedge.getDestination(), new ArrayList<StatEdge>(Arrays.asList(statedge)));
     }
   }
 

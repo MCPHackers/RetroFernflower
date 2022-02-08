@@ -109,7 +109,7 @@ public class MethodDescriptor {
       for (VarType param : newParams) {
         res.append(param);
       }
-      res.append(")").append(newRet.toString());
+      res.append(")").append(newRet);
       return res.toString();
     }
 

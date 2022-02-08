@@ -309,9 +309,7 @@ public class InitializerProcessor {
         String classname = meth.varproc.getThisVars().get(varpaar);
 
         if (classname != null) { // any this instance. TODO: Restrict to current class?
-          if (withThis || !wrapper.getClassStruct().qualifiedName.equals(inv.getClassname())) {
-            return true;
-          }
+          return withThis || !wrapper.getClassStruct().qualifiedName.equals(inv.getClassname());
         }
       }
     }

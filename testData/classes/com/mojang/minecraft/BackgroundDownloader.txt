@@ -1,0 +1,177 @@
+
+  public final void run();
+    descriptor: ()V
+    flags: ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=9, args_size=1
+         0: new           #149                // class java/util/ArrayList
+         3: dup
+         4: invokespecial #150                // Method java/util/ArrayList."<init>":()V
+         7: astore_1
+         8: new           #152                // class java/net/URL
+        11: dup
+        12: ldc           #154                // String http://www.minecraft.net/resources/
+        14: invokespecial #155                // Method java/net/URL."<init>":(Ljava/lang/String;)V
+        17: astore_2
+        18: new           #157                // class java/io/BufferedReader
+        21: dup
+        22: new           #159                // class java/io/InputStreamReader
+        25: dup
+        26: aload_2
+        27: invokevirtual #163                // Method java/net/URL.openStream:()Ljava/io/InputStream;
+        30: invokespecial #166                // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;)V
+        33: invokespecial #169                // Method java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+        36: astore_3
+        37: aconst_null
+        38: astore        4
+        40: aload_3
+        41: invokevirtual #172                // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+        44: dup
+        45: astore        4
+        47: ifnull        62
+        50: aload_1
+        51: aload         4
+        53: invokeinterface #178,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+        58: pop
+        59: goto          40
+        62: aload_3
+        63: invokevirtual #181                // Method java/io/BufferedReader.close:()V
+        66: iconst_0
+        67: istore_3
+        68: iload_3
+        69: aload_1
+        70: invokeinterface #184,  1          // InterfaceMethod java/util/List.size:()I
+        75: if_icmpge     338
+        78: aload_0
+        79: aload_2
+        80: aload_1
+        81: iload_3
+        82: invokeinterface #188,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+        87: checkcast     #56                 // class java/lang/String
+        90: astore        6
+        92: astore        5
+        94: astore        4
+        96: aload         6
+        98: ldc           #190                // String ,
+       100: invokevirtual #194                // Method java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+       103: dup
+       104: astore        6
+       106: iconst_0
+       107: aaload
+       108: astore        7
+       110: aload         6
+       112: iconst_1
+       113: aaload
+       114: invokestatic  #200                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       117: istore        8
+       119: aload         6
+       121: iconst_2
+       122: aaload
+       123: invokestatic  #206                // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+       126: pop2
+       127: new           #32                 // class java/io/File
+       130: dup
+       131: aload         4
+       133: getfield      #142                // Field resourcesFolder:Ljava/io/File;
+       136: aload         7
+       138: invokespecial #140                // Method java/io/File."<init>":(Ljava/io/File;Ljava/lang/String;)V
+       141: dup
+       142: astore        6
+       144: invokevirtual #123                // Method java/io/File.exists:()Z
+       147: ifeq          162
+       150: aload         6
+       152: invokevirtual #210                // Method java/io/File.length:()J
+       155: iload         8
+       157: i2l
+       158: lcmp
+       159: ifeq          211
+       162: aload         6
+       164: invokevirtual #214                // Method java/io/File.getParentFile:()Ljava/io/File;
+       167: invokevirtual #126                // Method java/io/File.mkdirs:()Z
+       170: pop
+       171: aload         7
+       173: ldc           #216                // String
+       175: ldc           #218                // String %20
+       177: invokevirtual #221                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       180: astore        8
+       182: aload         4
+       184: new           #152                // class java/net/URL
+       187: dup
+       188: aload         5
+       190: aload         8
+       192: invokespecial #224                // Method java/net/URL."<init>":(Ljava/net/URL;Ljava/lang/String;)V
+       195: aload         6
+       197: invokespecial #228                // Method downloadResource:(Ljava/net/URL;Ljava/io/File;)V
+       200: aload         4
+       202: getfield      #18                 // Field closing:Z
+       205: ifeq          211
+       208: goto          324
+       211: aload         4
+       213: getfield      #20                 // Field minecraft:Lcom/mojang/minecraft/Minecraft;
+       216: aload         7
+       218: aload         6
+       220: astore        6
+       222: astore        5
+       224: astore        4
+       226: aload         5
+       228: ldc           #230                // String /
+       230: invokevirtual #233                // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+       233: istore        7
+       235: aload         5
+       237: iconst_0
+       238: iload         7
+       240: invokevirtual #237                // Method java/lang/String.substring:(II)Ljava/lang/String;
+       243: astore        8
+       245: aload         5
+       247: iload         7
+       249: iconst_1
+       250: iadd
+       251: invokevirtual #240                // Method java/lang/String.substring:(I)Ljava/lang/String;
+       254: astore        5
+       256: aload         8
+       258: ldc           #242                // String sound
+       260: invokevirtual #246                // Method java/lang/String.equalsIgnoreCase:(Ljava/lang/String;)Z
+       263: ifeq          292
+       266: aload         4
+       268: getfield      #252                // Field com/mojang/minecraft/Minecraft.soundManager:Lcom/mojang/minecraft/sound/SoundManager;
+       271: aload         5
+       273: aload         6
+       275: astore        6
+       277: astore        5
+       279: dup
+       280: astore        4
+       282: aload         6
+       284: aload         5
+       286: invokevirtual #257                // Method com/mojang/minecraft/sound/SoundManager.registerSound:(Ljava/io/File;Ljava/lang/String;)V
+       289: goto          324
+       292: aload         8
+       294: ldc_w         #259                // String music
+       297: invokevirtual #246                // Method java/lang/String.equalsIgnoreCase:(Ljava/lang/String;)Z
+       300: ifeq          315
+       303: aload         4
+       305: getfield      #252                // Field com/mojang/minecraft/Minecraft.soundManager:Lcom/mojang/minecraft/sound/SoundManager;
+       308: aload         5
+       310: aload         6
+       312: invokevirtual #263                // Method com/mojang/minecraft/sound/SoundManager.registerMusic:(Ljava/lang/String;Ljava/io/File;)V
+       315: goto          324
+       318: dup
+       319: astore        6
+       321: invokevirtual #266                // Method java/lang/Exception.printStackTrace:()V
+       324: aload_0
+       325: getfield      #18                 // Field closing:Z
+       328: ifeq          332
+       331: return
+       332: iinc          3, 1
+       335: goto          68
+       338: return
+       339: dup
+       340: astore_1
+       341: invokevirtual #267                // Method java/io/IOException.printStackTrace:()V
+       344: return
+      Exception table:
+         from    to  target type
+            96   208   318   Class java/lang/Exception
+           211   315   318   Class java/lang/Exception
+             0   331   339   Class java/io/IOException
+}
+SourceFile: "BackgroundDownloader.java"

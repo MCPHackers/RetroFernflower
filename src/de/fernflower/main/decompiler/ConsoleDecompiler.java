@@ -25,6 +25,7 @@ import de.fernflower.main.providers.RetroMCPJavadocProvider;
 import de.fernflower.util.InterpreterUtil;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Function;
 import java.util.jar.JarOutputStream;
@@ -247,7 +248,7 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
   public void saveClassFile(String path, String qualifiedName, String entryName, String content, int[] mapping) {
     File file = new File(getAbsolutePath(path), entryName);
     try {
-      Writer out = new OutputStreamWriter(new FileOutputStream(file), "UTF8");
+      Writer out = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
       try {
         out.write(content);
       }
@@ -325,7 +326,7 @@ public class ConsoleDecompiler implements IBytecodeProvider, IResultSaver {
       ZipOutputStream out = mapArchiveStreams.get(file);
       out.putNextEntry(new ZipEntry(entryName));
       if (content != null) {
-        out.write(content.getBytes("UTF-8"));
+        out.write(content.getBytes(StandardCharsets.UTF_8));
       }
     }
     catch (IOException ex) {

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.jar.JarOutputStream;
@@ -20,7 +21,7 @@ import de.fernflower.util.InterpreterUtil;
 public class SingleFileSaver implements IResultSaver {
   private final File target;
   private ZipOutputStream output;
-  private Set<String> entries = new HashSet<>();
+  private final Set<String> entries = new HashSet<>();
 
   public SingleFileSaver(File target) {
     this.target = target;
@@ -90,7 +91,7 @@ public class SingleFileSaver implements IResultSaver {
     try {
       output.putNextEntry(new ZipEntry(entryName));
       if (content != null)
-          output.write(content.getBytes("UTF-8"));
+          output.write(content.getBytes(StandardCharsets.UTF_8));
     }
     catch (IOException ex) {
       String message = "Cannot write entry " + entryName + " to " + target;

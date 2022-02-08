@@ -70,9 +70,9 @@ public class FlattenStatementsHelper {
   private void flattenStatement() {
 
     class StatementStackEntry {
-      public Statement statement;
-      public LinkedList<StackEntry> stackFinally;
-      public List<Exprent> tailExprents;
+      public final Statement statement;
+      public final LinkedList<StackEntry> stackFinally;
+      public final List<Exprent> tailExprents;
 
       public int statementIndex;
       public int edgeIndex;

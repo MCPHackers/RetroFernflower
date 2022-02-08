@@ -211,7 +211,7 @@ public class DomHelper {
 
     RootStatement root = graphToStatement(graph);
 
-    if (!processStatement(root, new HashMap<Integer, Set<Integer>>())) {
+    if (!processStatement(root, new HashMap<>())) {
 
       //			try {
       //				DotExporter.toDotFile(root.getFirst().getStats().get(13), new File("c:\\Temp\\stat1.dot"));
@@ -221,7 +221,7 @@ public class DomHelper {
       throw new RuntimeException("parsing failure!");
     }
 
-    LabelHelper.lowContinueLabels(root, new HashSet<StatEdge>());
+    LabelHelper.lowContinueLabels(root, new HashSet<>());
 
     SequenceHelper.condenseSequences(root);
     root.buildMonitorFlags();
@@ -361,7 +361,7 @@ public class DomHelper {
           //						DotExporter.toDotFile(general, new File("c:\\Temp\\stat1.dot"));
           //					} catch(Exception ex) {ex.printStackTrace();}
 
-          mapExtPost = new HashMap<Integer, Set<Integer>>();
+          mapExtPost = new HashMap<>();
           mapRefreshed = true;
         }
 

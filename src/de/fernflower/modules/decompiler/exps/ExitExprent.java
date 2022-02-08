@@ -167,9 +167,7 @@ public class ExitExprent extends Exprent {
     
     Integer type = (Integer)matchNode.getRuleValue(MatchProperties.EXPRENT_EXITTYPE);
     if(type != null) {
-      if(this.exitType != type.intValue()) {
-        return false;
-      }
+      return this.exitType == type.intValue();
     }
     
     return true;

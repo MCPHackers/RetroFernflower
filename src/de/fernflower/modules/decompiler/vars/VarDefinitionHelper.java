@@ -69,7 +69,7 @@ public class VarDefinitionHelper {
     for (int i = 0; i < paramcount; i++) {
       implDefVars.add(varindex);
 	  	String s = vc.getFreeName(varindex);
-	  	if(i > 0 && thisvar || !thisvar)
+	  	if(i > 0 || !thisvar)
 	  	{
 	  		int i2 = i;
 	  		if(!thisvar)

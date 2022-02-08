@@ -231,7 +231,7 @@ public class ExceptionDeobfuscator {
       }
 
       public Set<? extends IGraphNode> getRoots() {
-        return new HashSet<IGraphNode>(Arrays.asList(new IGraphNode[]{graph.getFirst()}));
+        return new HashSet<IGraphNode>(Arrays.asList(graph.getFirst()));
       }
     });
 

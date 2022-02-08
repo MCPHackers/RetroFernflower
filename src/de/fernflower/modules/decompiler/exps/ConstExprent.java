@@ -40,7 +40,7 @@ public class ConstExprent extends Exprent {
     put(new Integer(0xC), "\\f");   /* \u000c: form feed FF */
     put(new Integer(0xD), "\\r");   /* \u000d: carriage return CR */
     put(new Integer(0x22), "\\\""); /* \u0022: double quote " */
-    put(new Integer(0x27), "\\\'"); /* \u0027: single quote ' */
+    put(new Integer(0x27), "\\'"); /* \u0027: single quote ' */
     put(new Integer(0x5C), "\\\\"); /* \u005c: backslash \ */
   }};
 
@@ -138,7 +138,7 @@ public class ConstExprent extends Exprent {
               ret = InterpreterUtil.charToUnicodeLiteral(c);
             }
           }
-          return new TextBuffer(ret).enclose("\'", "\'");
+          return new TextBuffer(ret).enclose("'", "'");
         case CodeConstants.TYPE_BYTE:
         case CodeConstants.TYPE_BYTECHAR:
         case CodeConstants.TYPE_SHORT:
@@ -304,7 +304,7 @@ public class ConstExprent extends Exprent {
           buffer.append("\\\"");
           break;
         case 0x27: //"\\\\'");  // u0027: single quote '
-          buffer.append("\\\'");
+          buffer.append("\\'");
           break;
         default:
           if (c >= 32 && c < 127 || !ascii && InterpreterUtil.isPrintableUnicode(c)) {

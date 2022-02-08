@@ -199,7 +199,7 @@ public class NewExprent extends Exprent {
           else {
             if (newNode.type == ClassNode.CLASS_MEMBER && (newNode.access & CodeConstants.ACC_STATIC) == 0 &&
                 !constructor.getLstParameters().isEmpty()) { // member non-static class invoked with enclosing class instance
-              sigFields = new ArrayList<VarVersionPair>(Collections.nCopies(constructor.getLstParameters().size(), (VarVersionPair)null));
+              sigFields = new ArrayList<VarVersionPair>(Collections.nCopies(constructor.getLstParameters().size(), null));
               sigFields.set(0, new VarVersionPair(-1, 0));
             }
           }
@@ -304,7 +304,7 @@ public class NewExprent extends Exprent {
           }
           else if (newNode.type == ClassNode.CLASS_MEMBER && (newNode.access & CodeConstants.ACC_STATIC) == 0 && !constructor.getLstParameters().isEmpty()) {
             // member non-static class invoked with enclosing class instance
-            sigFields = new ArrayList<VarVersionPair>(Collections.nCopies(lstParameters.size(), (VarVersionPair)null));
+            sigFields = new ArrayList<VarVersionPair>(Collections.nCopies(lstParameters.size(), null));
             sigFields.set(0, new VarVersionPair(-1, 0));
           }
         }

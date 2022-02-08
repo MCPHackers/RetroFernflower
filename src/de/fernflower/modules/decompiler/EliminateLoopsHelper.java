@@ -52,11 +52,7 @@ public class EliminateLoopsHelper {
       }
     }
 
-    if (stat.type == Statement.TYPE_DO && isLoopRedundant((DoStatement)stat)) {
-      return true;
-    }
-
-    return false;
+    return stat.type == Statement.TYPE_DO && isLoopRedundant((DoStatement) stat);
   }
 
   private static boolean isLoopRedundant(DoStatement loop) {

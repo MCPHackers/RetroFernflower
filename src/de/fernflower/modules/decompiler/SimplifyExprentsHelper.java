@@ -393,10 +393,8 @@ public class SimplifyExprentsHelper {
         VarExprent varleft = (VarExprent)asf.getLeft();
         VarExprent varright = (VarExprent)asf.getRight();
 
-        if (varleft.getIndex() == varright.getIndex() && varleft.isStack() &&
-            varright.isStack()) {
-          return true;
-        }
+        return varleft.getIndex() == varright.getIndex() && varleft.isStack() &&
+                varright.isStack();
       }
     }
 
@@ -514,10 +512,8 @@ public class SimplifyExprentsHelper {
   private static boolean isMonitorExit(Exprent first) {
     if (first.type == Exprent.EXPRENT_MONITOR) {
       MonitorExprent monexpr = (MonitorExprent)first;
-      if (monexpr.getMonType() == MonitorExprent.MONITOR_EXIT && monexpr.getValue().type == Exprent.EXPRENT_VAR
-          && !((VarExprent)monexpr.getValue()).isStack()) {
-        return true;
-      }
+      return monexpr.getMonType() == MonitorExprent.MONITOR_EXIT && monexpr.getValue().type == Exprent.EXPRENT_VAR
+              && !((VarExprent) monexpr.getValue()).isStack();
     }
 
     return false;

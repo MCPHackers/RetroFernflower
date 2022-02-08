@@ -41,10 +41,10 @@ import java.util.Set;
 public class ClassWrapper {
 
   private final StructClass classStruct;
-  private final Set<String> hiddenMembers = new HashSet<String>();
-  private final VBStyleCollection<Exprent, String> staticFieldInitializers = new VBStyleCollection<Exprent, String>();
-  private final VBStyleCollection<Exprent, String> dynamicFieldInitializers = new VBStyleCollection<Exprent, String>();
-  private final VBStyleCollection<MethodWrapper, String> methods = new VBStyleCollection<MethodWrapper, String>();
+  private final Set<String> hiddenMembers = new HashSet<>();
+  private final VBStyleCollection<Exprent, String> staticFieldInitializers = new VBStyleCollection<>();
+  private final VBStyleCollection<Exprent, String> dynamicFieldInitializers = new VBStyleCollection<>();
+  private final VBStyleCollection<MethodWrapper, String> methods = new VBStyleCollection<>();
 
   public ClassWrapper(StructClass classStruct) {
     this.classStruct = classStruct;
@@ -56,7 +56,7 @@ public class ClassWrapper {
     DecompilerContext.getLogger().startClass(classStruct.qualifiedName);
 
     // collect field names
-    Set<String> setFieldNames = new HashSet<String>();
+    Set<String> setFieldNames = new HashSet<>();
     for (StructField fd : classStruct.getFields()) {
       setFieldNames.add(fd.getName());
     }
@@ -135,7 +135,7 @@ public class ClassWrapper {
           int varIndex = 0;
           for (int i = 0; i < paramCount; i++) {
         	String s = vc.getFreeName(varIndex);
-        	if(i > 0 && thisVar || !thisVar)
+        	if(i > 0 || !thisVar)
         	{
         		int i2 = i;
         		if(!thisVar)

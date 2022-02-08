@@ -30,7 +30,7 @@ public class IrreducibleCFGDeobfuscator {
   public static boolean isStatementIrreducible(Statement statement) {
 
     class Node {
-      public Integer id;
+      public final Integer id;
       public final Set<Node> preds = new HashSet<Node>();
       public final Set<Node> succs = new HashSet<Node>();
 

@@ -455,9 +455,7 @@ public class IfStatement extends Statement {
 
     Integer type = (Integer)matchNode.getRuleValue(MatchProperties.STATEMENT_IFTYPE);
     if(type != null) {
-      if(this.iftype != type.intValue()) {
-        return false;
-      }
+      return this.iftype == type.intValue();
     }
         
     return true;

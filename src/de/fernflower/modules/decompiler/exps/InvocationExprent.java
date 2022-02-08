@@ -50,6 +50,8 @@ public class InvocationExprent extends Exprent {
   public static final int INVOKE_INTERFACE = 4;
   public static final int INVOKE_DYNAMIC = 5;
 
+  public static final int CONSTANT_DYNAMIC = 6;
+
   public static final int TYP_GENERAL = 1;
   public static final int TYP_INIT = 2;
   public static final int TYP_CLINIT = 3;
@@ -206,6 +208,59 @@ public class InvocationExprent extends Exprent {
     return new InvocationExprent(this);
   }
 
+
+  public boolean isBoxingCall() {
+    if (isStatic && "valueOf".equals(name) && lstParameters.size() == 1) {
+      int paramType = lstParameters.get(0).getExprType().type;
+
+      // special handling for ambiguous types
+      if (lstParameters.get(0).type == Exprent.EXPRENT_CONST) {
+        // 'Integer.valueOf(1)' has '1' type detected as TYPE_BYTECHAR
+        // 'Integer.valueOf(40_000)' has '40_000' type detected as TYPE_CHAR
+        // so we check the type family instead
+        if (lstParameters.get(0).getExprType().typeFamily == CodeConstants.TYPE_FAMILY_INTEGER) {
+          if (classname.equals("java/lang/Integer")) {
+            return true;
+          }
+        }
+
+        if (paramType == CodeConstants.TYPE_BYTECHAR || paramType == CodeConstants.TYPE_SHORTCHAR) {
+          if (classname.equals("java/lang/Character") || classname.equals("java/lang/Short")) {
+            return true;
+          }
+        }
+      }
+
+      return classname.equals(getClassNameForPrimitiveType(paramType));
+    }
+
+    return false;
+  }
+
+  private static String getClassNameForPrimitiveType(int type) {
+    switch (type) {
+      case CodeConstants.TYPE_BOOLEAN:
+        return "java/lang/Boolean";
+      case CodeConstants.TYPE_BYTE:
+      case CodeConstants.TYPE_BYTECHAR:
+        return "java/lang/Byte";
+      case CodeConstants.TYPE_CHAR:
+        return "java/lang/Character";
+      case CodeConstants.TYPE_SHORT:
+      case CodeConstants.TYPE_SHORTCHAR:
+        return "java/lang/Short";
+      case CodeConstants.TYPE_INT:
+        return "java/lang/Integer";
+      case CodeConstants.TYPE_LONG:
+        return "java/lang/Long";
+      case CodeConstants.TYPE_FLOAT:
+        return "java/lang/Float";
+      case CodeConstants.TYPE_DOUBLE:
+        return "java/lang/Double";
+    }
+    return null;
+  }
+
   @Override
   public TextBuffer toJava(int indent, BytecodeMappingTracer tracer) {
     TextBuffer buf = new TextBuffer();
@@ -215,7 +270,19 @@ public class InvocationExprent extends Exprent {
 
     tracer.addMapping(bytecode);
 
-    if (isStatic) {
+    if (isStatic || invocationTyp == INVOKE_DYNAMIC || invocationTyp == CONSTANT_DYNAMIC) {
+      if (isBoxingCall()) {
+        // process general "boxing" calls, e.g. 'Object[] data = { true }' or 'Byte b = 123'
+        // here 'byte' and 'short' values do not need an explicit narrowing type cast
+        ExprProcessor.getCastedExprent(lstParameters.get(0), descriptor.params[0], buf, indent, false, false, tracer);
+        tracer.addMapping(bytecode);
+        return buf;
+      }
+
+      if (invocationTyp == CONSTANT_DYNAMIC) {
+        buf.append('(').append(ExprProcessor.getCastTypeName(descriptor.ret)).append(')');
+      }
+
       ClassNode node = (ClassNode)DecompilerContext.getProperty(DecompilerContext.CURRENT_CLASS_NODE);
       if (node == null || !classname.equals(node.classStruct.qualifiedName)) {
         buf.append(DecompilerContext.getImportCollector().getShortName(ExprProcessor.buildJavaClassName(classname)));
@@ -305,6 +372,9 @@ public class InvocationExprent extends Exprent {
         else if (isInstanceThis) {
           buf.append("this(");
         }
+        else if (instance != null) {
+          buf.append(instance.toJava(indent, tracer)).append(".<init>(");
+        }
         else {
           throw new RuntimeException("Unrecognized invocation of " + CodeConstants.INIT_NAME);
         }
@@ -321,7 +391,7 @@ public class InvocationExprent extends Exprent {
         }
         else {
           if (newNode.type == ClassNode.CLASS_MEMBER && (newNode.access & CodeConstants.ACC_STATIC) == 0) { // non-static member class
-            sigFields = new ArrayList<VarVersionPair>(Collections.nCopies(lstParameters.size(), (VarVersionPair)null));
+            sigFields = new ArrayList<VarVersionPair>(Collections.nCopies(lstParameters.size(), null));
             sigFields.set(0, new VarVersionPair(-1, 0));
           }
         }

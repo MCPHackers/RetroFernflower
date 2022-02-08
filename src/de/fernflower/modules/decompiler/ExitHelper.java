@@ -324,7 +324,7 @@ public class ExitHelper {
                                           ((MethodDescriptor)DecompilerContext
                                             .getProperty(DecompilerContext.CURRENT_METHOD_DESCRIPTOR)).ret, null);
     // a changeable list needed
-    bstat.setExprents(new ArrayList<Exprent>(Arrays.asList(new Exprent[]{retexpr})));
+    bstat.setExprents(new ArrayList<Exprent>(Arrays.asList(retexpr)));
 
     // build sequence to replace the former top statement
     SequenceStatement seq = new SequenceStatement(Arrays.asList(top, bstat));

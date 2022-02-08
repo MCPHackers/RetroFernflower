@@ -619,9 +619,7 @@ public class FunctionExprent extends Exprent {
     
     Integer type = (Integer)matchNode.getRuleValue(MatchProperties.EXPRENT_FUNCTYPE);
     if(type != null) {
-      if(this.funcType != type.intValue()) {
-        return false;
-      }
+      return this.funcType == type.intValue();
     }
     
     return true;

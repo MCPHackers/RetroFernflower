@@ -297,10 +297,8 @@ public class AssertProcessor {
       if (fparam.getFuncType() == FunctionExprent.FUNCTION_BOOL_NOT &&
           fparam.getLstOperands().get(0).type == Exprent.EXPRENT_FIELD) {
         FieldExprent fdparam = (FieldExprent)fparam.getLstOperands().get(0);
-        if (classname.equals(fdparam.getClassname())
-            && key.equals(InterpreterUtil.makeUniqueKey(fdparam.getName(), fdparam.getDescriptor().descriptorString))) {
-          return true;
-        }
+        return classname.equals(fdparam.getClassname())
+                && key.equals(InterpreterUtil.makeUniqueKey(fdparam.getName(), fdparam.getDescriptor().descriptorString));
       }
     }
 
