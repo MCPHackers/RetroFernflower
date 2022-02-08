@@ -3,10 +3,10 @@ public class TestInnerSignature<A, B, C> {
    B b;
    C c;
 
-   public TestInnerSignature(A var1, B var2, C var3) {
-      this.a = var1;// 23
-      this.b = var2;// 24
-      this.c = var3;// 25
+   public TestInnerSignature(A object1, B object2, C object3) {
+      this.a = object1;// 23
+      this.b = object2;// 24
+      this.c = object3;// 25
    }// 26
 
    public static class InnerStatic<A, B, C> {
@@ -14,10 +14,10 @@ public class TestInnerSignature<A, B, C> {
       B b;
       C c;
 
-      public InnerStatic(A var1, B var2, C var3) {
-         this.a = var1;// 46
-         this.b = var2;// 47
-         this.c = var3;// 48
+      public InnerStatic(A object1, B object2, C object3) {
+         this.a = object1;// 46
+         this.b = object2;// 47
+         this.c = object3;// 48
       }// 49
    }
 
@@ -26,10 +26,10 @@ public class TestInnerSignature<A, B, C> {
       B b;
       C c;
 
-      public Inner(A var1, B var2, C var3) {
-         this.a = var2;// 34
-         this.b = var3;// 35
-         this.c = var4;// 36
+      public Inner(A testInnerSignature1, B object2, C object3) {
+         this.a = object2;// 34
+         this.b = object3;// 35
+         this.c = object4;// 36
       }// 37
    }
 }

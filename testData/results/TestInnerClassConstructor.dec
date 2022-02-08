@@ -9,19 +9,19 @@ class TestInnerClassConstructor {
       new TestInnerClassConstructor.Another(3, 4);// 9
    }// 10
 
-   void n(String var1) {
-      System.out.println("n(): " + var1);// 13
+   void n(String string1) {
+      System.out.println("n(): " + string1);// 13
    }// 14
 
    private class Another {
-      private Another(int var2, int var3) {
-         TestInnerClassConstructor.this.n(var2 + "+" + var3);// 24
+      private Another(int i2, int i3) {
+         TestInnerClassConstructor.this.n(i2 + "+" + i3);// 24
       }// 25
    }
 
    final class Inner {
-      private Inner(String var2) {
-         TestInnerClassConstructor.this.n(var2);// 18
+      private Inner(String string2) {
+         TestInnerClassConstructor.this.n(string2);// 18
       }// 19
    }
 }

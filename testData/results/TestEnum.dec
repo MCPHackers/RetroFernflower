@@ -21,8 +21,8 @@ public enum TestEnum {
       this("?");// 34
    }
 
-   private TestEnum(@Deprecated String var3) {
-      this.s = var3;// 35
+   private TestEnum(@Deprecated String string3) {
+      this.s = string3;// 35
    }
 }
 

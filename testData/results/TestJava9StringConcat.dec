@@ -1,12 +1,12 @@
 package java9;
 
 public class TestJava9StringConcat {
-   public String test1(String var1, int var2) {
-      return var1 + var2;// 20
+   public String test1(String string1, int i2) {
+      return string1 + i2;// 20
    }
 
-   public String test2(String var1, int var2, Object var3) {
-      return "(" + var1 + "-" + var2 + "---" + var3 + ")";// 24
+   public String test2(String string1, int i2, Object object3) {
+      return "(" + string1 + "-" + i2 + "---" + object3 + ")";// 24
    }
 }
 

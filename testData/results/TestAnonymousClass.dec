@@ -3,27 +3,27 @@ package pkg;
 public abstract class TestAnonymousClass {
    public static final Runnable R3 = new Runnable() {
       public void run() {
-         boolean var1 = true;// 28
-         boolean var2 = true;// 29
+         boolean z1 = true;// 28
+         boolean z2 = true;// 29
       }// 30
    };
    public static final Runnable R = new Runnable() {
       public void run() {
-         boolean var1 = true;// 45
-         boolean var2 = true;// 46
+         boolean z1 = true;// 45
+         boolean z2 = true;// 46
       }// 47
    };
    public static final Runnable R1 = new Runnable() {
       public void run() {
-         boolean var1 = true;// 53
-         boolean var2 = true;// 54
+         boolean z1 = true;// 53
+         boolean z2 = true;// 54
       }// 55
    };
    private final TestAnonymousClass.InnerRecursive y = new TestAnonymousClass.InnerRecursive(new TestAnonymousClass.InnerRecursive((TestAnonymousClass.InnerRecursive)null) {
       void foo() {
-         boolean var1 = true;// 75
-         boolean var2 = true;// 76
-         boolean var3 = true;// 77
+         boolean z1 = true;// 75
+         boolean z2 = true;// 76
+         boolean z3 = true;// 77
       }// 78
    }) {
       int v = 5;
@@ -33,9 +33,9 @@ public abstract class TestAnonymousClass {
    };
    private final TestAnonymousClass.InnerRecursive x = new TestAnonymousClass.InnerRecursive(new TestAnonymousClass.InnerRecursive((TestAnonymousClass.InnerRecursive)null) {
       void foo() {
-         boolean var1 = true;// 90
-         boolean var2 = true;// 91
-         boolean var3 = true;// 92
+         boolean z1 = true;// 90
+         boolean z2 = true;// 91
+         boolean z3 = true;// 92
       }// 93
    }) {
       int v = 5;
@@ -44,15 +44,15 @@ public abstract class TestAnonymousClass {
       int o = 5;
    };
 
-   void foo(int var1) throws Exception {
-      if(var1 > 0) {// 10
-         TestAnonymousClass.I var2 = new TestAnonymousClass.I() {
+   void foo(int i1) throws Exception {
+      if(i1 > 0) {// 10
+         TestAnonymousClass.I testAnonymousClass$I2 = new TestAnonymousClass.I() {
             public void foo() throws Exception {
-               boolean var1 = true;// 13
-               boolean var2 = true;// 14
+               boolean z1 = true;// 13
+               boolean z2 = true;// 14
             }// 15
          };// 11
-         var2.foo();// 17
+         testAnonymousClass$I2.foo();// 17
       } else {
          System.out.println(5);// 21
       }
@@ -60,18 +60,18 @@ public abstract class TestAnonymousClass {
    }// 23
 
    void boo() {
-      boolean var1 = true;// 35
+      boolean z1 = true;// 35
    }// 36
 
    void zoo() {
-      boolean var1 = true;// 39
+      boolean z1 = true;// 39
    }// 40
 
    static class InnerRecursive {
       TestAnonymousClass.InnerRecursive r;
 
-      public InnerRecursive(TestAnonymousClass.InnerRecursive var1) {
-         this.r = var1;// 105
+      public InnerRecursive(TestAnonymousClass.InnerRecursive testAnonymousClass$InnerRecursive1) {
+         this.r = testAnonymousClass$InnerRecursive1;// 105
       }// 106
 
       void foo() {
@@ -81,8 +81,8 @@ public abstract class TestAnonymousClass {
    private static class Inner {
       private static Runnable R_I = new Runnable() {
          public void run() {
-            boolean var1 = true;// 66
-            boolean var2 = true;// 67
+            boolean z1 = true;// 66
+            boolean z2 = true;// 67
          }// 68
       };
    }

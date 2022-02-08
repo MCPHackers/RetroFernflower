@@ -2,7 +2,7 @@ import java.util.function.Consumer;
 
 public class TestMethodReferenceLetterClass {
    void boo() {
-      Consumer var1 = R::foo;// 21
+      Consumer consumer1 = R::foo;// 21
    }// 22
 }
 

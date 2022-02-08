@@ -9,7 +9,7 @@ public abstract class TestDeprecations {
 
    /** @deprecated */
    public void byComment() {
-      boolean var1 = true;// 27
+      boolean z1 = true;// 27
    }// 28
 
    /** @deprecated */
@@ -18,7 +18,7 @@ public abstract class TestDeprecations {
    /** @deprecated */
    @Deprecated
    public void byAnno() {
-      boolean var1 = true;// 35
+      boolean z1 = true;// 35
    }// 36
 
    /** @deprecated */
@@ -31,7 +31,7 @@ public abstract class TestDeprecations {
       int a = 5;
 
       void foo() {
-         boolean var1 = true;// 55
+         boolean z1 = true;// 55
       }// 56
    }
 
@@ -40,7 +40,7 @@ public abstract class TestDeprecations {
       int a = 5;
 
       void foo() {
-         boolean var1 = true;// 46
+         boolean z1 = true;// 46
       }// 47
    }
 }

@@ -3,13 +3,13 @@ package pkg;
 public class TestThrowException {
    Runnable r;
 
-   public TestThrowException(int var1) {
-      if(var1 > 0) {// 9
+   public TestThrowException(int i1) {
+      if(i1 > 0) {// 9
          throw new IllegalArgumentException("xxx");// 10
       } else {
          this.r = new Runnable() {// 12
             public void run() {
-               boolean var1 = true;// 15
+               boolean z1 = true;// 15
             }// 16
          };
       }

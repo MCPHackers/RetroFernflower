@@ -1,16 +1,16 @@
 package pkg;
 
 public class TestSynchronizedMapping {
-   public int test(int var1) {
+   public int test(int i1) {
       synchronized(this) {// 8
-         ++var1;// 9
+         ++i1;// 9
       }// 10
 
-      return var1++;// 11
+      return i1++;// 11
    }
 
-   public void test2(String var1) {
-      System.out.println(var1);// 15
+   public void test2(String string1) {
+      System.out.println(string1);// 15
    }// 16
 }
 

@@ -1,8 +1,8 @@
 package pkg;
 
 public class TestClassSwitch {
-   public void testCaseOrder(int var1) {
-      switch(var1) {// 22
+   public void testCaseOrder(int i1) {
+      switch(i1) {// 22
       case 5:
          System.out.println(5);// 27
       default:

@@ -4,12 +4,12 @@ public class TestClassNestedInitializer {
    public String secret;
 
    public void test() {
-      TestClassNestedInitializer var1 = new TestClassNestedInitializer() {
+      TestClassNestedInitializer testClassNestedInitializer1 = new TestClassNestedInitializer() {
          {
             this.secret = "one";
          }
       };// 22
-      System.out.println(var1.secret);// 23
+      System.out.println(testClassNestedInitializer1.secret);// 23
    }// 24
 }
 

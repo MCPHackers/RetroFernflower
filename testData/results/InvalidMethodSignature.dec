@@ -4,24 +4,24 @@ import a.a.a.a.a.k;
 import a.a.a.a.c.c;
 import a.a.a.a.c.j;
 import a.a.a.a.e.bg;
-import a.a.a.a.e.f.b;
+
 import java.io.File;
 
 class i implements bg {
    private final j a;
    private final b b;
 
-   i(b var1, j var2) {
-      this.b = var1;// 1
-      this.a = var2;
+   i(b b1, j j2) {
+      this.b = b1;// 1
+      this.a = j2;
    }
 
-   public void a(c var1, k var2, boolean var3) {
-      File var4 = this.a.b().a(var1);// 2
-      b.a(this.b).add(var4);// 3
+   public void a(c c1, k k2, boolean z3) {
+      File file4 = this.a.b().a(c1);// 2
+      b.a(this.b).add(file4);// 3
    }// 4
 
-   public void a(a.a.a.a.c.b var1) {
+   public void a(a.a.a.a.c.b b1) {
    }// 0
 }
 

@@ -5,8 +5,8 @@ public class TestInnerLocalPkg {
       class Inner {
          final String x;
 
-         public Inner(String var1) {
-            this.x = var1;// 24
+         public Inner(String string1) {
+            this.x = string1;// 24
          }// 25
       }
 
@@ -19,8 +19,8 @@ public class TestInnerLocalPkg {
       class Inner {
          final String x;
 
-         public Inner(String var2) {
-            this.x = var2;// 36
+         public Inner(String string2) {
+            this.x = string2;// 36
          }// 37
       }
 
@@ -33,15 +33,15 @@ public class TestInnerLocalPkg {
    static class Inner1Static {
       final String x;
 
-      public Inner1Static(String var1) {
-         this.x = var1;// 55
+      public Inner1Static(String string1) {
+         this.x = string1;// 55
       }// 56
 
       public static class Inner2Static {
          final String x;
 
-         public Inner2Static(String var1) {
-            this.x = var1;// 61
+         public Inner2Static(String string1) {
+            this.x = string1;// 61
          }// 62
       }
    }
@@ -49,8 +49,8 @@ public class TestInnerLocalPkg {
    class Inner1 {
       final String x;
 
-      public Inner1(String var2) {
-         this.x = var2;// 48
+      public Inner1(String string2) {
+         this.x = string2;// 48
       }// 49
    }
 }

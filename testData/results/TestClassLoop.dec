@@ -8,11 +8,11 @@ public class TestClassLoop {
    }
 
    public static void testFinally() {
-      boolean var0 = Math.random() > 0.0D;// 29
+      boolean z0 = Math.random() > 0.0D;// 29
 
       while(true) {
          try {
-            if(!var0) {// 33
+            if(!z0) {// 33
                return;// 34
             }
          } finally {
@@ -22,7 +22,7 @@ public class TestClassLoop {
    }
 
    public static void testFinallyContinue() {
-      boolean var0 = Math.random() > 0.0D;// 45
+      boolean z0 = Math.random() > 0.0D;// 45
 
       while(true) {
          while(true) {
@@ -30,7 +30,7 @@ public class TestClassLoop {
                System.out.println("1");// 49
                break;
             } finally {
-               if(var0) {// 52
+               if(z0) {// 52
                   System.out.println("3");// 53
                   continue;// 54
                }
@@ -41,37 +41,37 @@ public class TestClassLoop {
       }
    }
 
-   public static int testWhileCombined(String var0) {
-      int var1 = var0.length();// 63
-      int var2 = 0;// 64
-      boolean var3 = false;// 65
-      boolean var4 = false;// 66
-      int var5 = 0;// 67
-      int var7 = 0;// 69
+   public static int testWhileCombined(String string0) {
+      int i1 = string0.length();// 63
+      int i2 = 0;// 64
+      boolean z3 = false;// 65
+      boolean z4 = false;// 66
+      int i5 = 0;// 67
+      int i7 = 0;// 69
 
-      for(boolean var8 = false; var2 < var1; ++var2) {// 70 73 90
-         char var6 = var0.charAt(var2);// 74
-         if(var6 == 48) {// 75
-            ++var7;// 76
+      for(boolean z8 = false; i2 < i1; ++i2) {// 70 73 90
+         char c6 = string0.charAt(i2);// 74
+         if(c6 == 48) {// 75
+            ++i7;// 76
          } else {
-            if(var6 != 46) {// 77
+            if(c6 != 46) {// 77
                break;
             }
 
-            if(var3) {// 78
+            if(z3) {// 78
                throw new NumberFormatException("multiple points");// 80
             }
 
-            var5 = var2;// 82
-            if(var4) {// 83
-               var5 = var2 - 1;// 84
+            i5 = i2;// 82
+            if(z4) {// 83
+               i5 = i2 - 1;// 84
             }
 
-            var3 = true;// 86
+            z3 = true;// 86
          }
       }
 
-      return var5;// 92
+      return i5;// 92
    }
 }
 

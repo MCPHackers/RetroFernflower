@@ -1,42 +1,42 @@
 package pkg;
 
 public class TestMethodParameters {
-   TestMethodParameters(@Deprecated int var1) {
+   TestMethodParameters(@Deprecated int i1) {
    }// 19
 
-   void m1(@Deprecated int var1) {
+   void m1(@Deprecated int i1) {
    }// 20
 
-   static void m2(@Deprecated int var0) {
+   static void m2(@Deprecated int i0) {
    }// 21
 
    void local() {
       class Local {
-         Local(@Deprecated int var2) {
+         Local(@Deprecated int i2) {
          }// 36
 
-         void m(@Deprecated int var1) {
+         void m(@Deprecated int i1) {
          }// 37
       }
 
    }// 39
 
    static class C2 {
-      C2(@Deprecated int var1) {
+      C2(@Deprecated int i1) {
       }// 29
 
-      void m1(@Deprecated int var1) {
+      void m1(@Deprecated int i1) {
       }// 30
 
-      static void m2(@Deprecated int var0) {
+      static void m2(@Deprecated int i0) {
       }// 31
    }
 
    class C1 {
-      C1(@Deprecated int var2) {
+      C1(@Deprecated int i2) {
       }// 24
 
-      void m(@Deprecated int var1) {
+      void m(@Deprecated int i1) {
       }// 25
    }
 }

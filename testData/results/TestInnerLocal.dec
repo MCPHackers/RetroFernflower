@@ -3,8 +3,8 @@ public class TestInnerLocal {
       class Inner {
          final String x;
 
-         public Inner(String var1) {
-            this.x = var1;// 22
+         public Inner(String string1) {
+            this.x = string1;// 22
          }// 23
       }
 
@@ -17,8 +17,8 @@ public class TestInnerLocal {
       class Inner {
          final String x;
 
-         public Inner(String var2) {
-            this.x = var2;// 34
+         public Inner(String string2) {
+            this.x = string2;// 34
          }// 35
       }
 
@@ -31,15 +31,15 @@ public class TestInnerLocal {
    static class Inner1Static {
       final String x;
 
-      public Inner1Static(String var1) {
-         this.x = var1;// 53
+      public Inner1Static(String string1) {
+         this.x = string1;// 53
       }// 54
 
       public static class Inner2Static {
          final String x;
 
-         public Inner2Static(String var1) {
-            this.x = var1;// 59
+         public Inner2Static(String string1) {
+            this.x = string1;// 59
          }// 60
       }
    }
@@ -47,8 +47,8 @@ public class TestInnerLocal {
    class Inner1 {
       final String x;
 
-      public Inner1(String var2) {
-         this.x = var2;// 46
+      public Inner1(String string2) {
+         this.x = string2;// 46
       }// 47
    }
 }

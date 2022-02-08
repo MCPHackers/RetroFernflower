@@ -2,24 +2,24 @@ package pkg;
 
 public abstract class TestLocalClass {
    void foo() {
-      boolean var1 = true;// 8
+      boolean z1 = true;// 8
       class Local {
          void foo() {
-            boolean var1 = true;// 11
-            boolean var2 = true;// 12
+            boolean z1 = true;// 11
+            boolean z2 = true;// 12
          }// 13
       }
 
-      Local var2 = new Local();// 15
-      var2.foo();// 16
+      Local testLocalClass$1Local2 = new Local();// 15
+      testLocalClass$1Local2.foo();// 16
    }// 17
 
    void boo() {
-      boolean var1 = true;// 20
+      boolean z1 = true;// 20
    }// 21
 
    void zoo() {
-      boolean var1 = true;// 24
+      boolean z1 = true;// 24
    }// 25
 }
 
