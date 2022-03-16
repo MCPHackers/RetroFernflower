@@ -188,7 +188,7 @@ public class ClassWrapper {
   }
 
   @SuppressWarnings("deprecation")
-  private static void killThread(Thread thread) {
+  public static void killThread(Thread thread) {
     thread.stop();
   }
 

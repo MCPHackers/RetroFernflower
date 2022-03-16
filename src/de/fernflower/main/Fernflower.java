@@ -32,8 +32,8 @@ import java.util.Map;
 
 public class Fernflower implements IDecompiledData {
 
-  private final StructContext structContext;
-  private ClassesProcessor classesProcessor;
+  public StructContext structContext;
+  public ClassesProcessor classesProcessor;
 
   public Fernflower(IBytecodeProvider provider, IResultSaver saver, Map<String, Object> options, IFernflowerLogger logger, IJavadocProvider javadocProvider) {
     structContext = new StructContext(saver, this, new LazyLoader(provider));

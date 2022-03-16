@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class BaseDecompiler {
 
-  private final Fernflower fernflower;
+  public Fernflower fernflower;
 
   public BaseDecompiler(IBytecodeProvider provider, IResultSaver saver, Map<String, Object> options, IFernflowerLogger logger) {
     this(provider, saver, options, logger, null);

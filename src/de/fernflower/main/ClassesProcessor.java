@@ -309,7 +309,7 @@ public class ClassesProcessor {
     }
   }
 
-  private static void addClassnameToImport(ClassNode node, ImportCollector imp) {
+  public static void addClassnameToImport(ClassNode node, ImportCollector imp) {
     if (node.simpleName != null && node.simpleName.length() > 0) {
       imp.getShortName(node.type == ClassNode.CLASS_ROOT ? node.classStruct.qualifiedName : node.simpleName, false);
     }
@@ -319,7 +319,7 @@ public class ClassesProcessor {
     }
   }
 
-  private static void destroyWrappers(ClassNode node) {
+  public static void destroyWrappers(ClassNode node) {
     node.wrapper = null;
     node.classStruct.releaseResources();
 
