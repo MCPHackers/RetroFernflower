@@ -344,7 +344,7 @@ public class ClassesProcessor {
     public int access;
     public String simpleName;
     public final StructClass classStruct;
-    private ClassWrapper wrapper;
+    public ClassWrapper wrapper;
     public String enclosingMethod;
     public InvocationExprent superInvocation;
     public final Map<String, VarVersionPair> mapFieldsToVars = new HashMap<String, VarVersionPair>();
