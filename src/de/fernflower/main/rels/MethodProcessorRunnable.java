@@ -183,14 +183,14 @@ public class MethodProcessorRunnable implements Runnable {
       }
 
       // initializer may have at most one return point, so no transformation of method exits permitted
-      if (isInitializer || !ExitHelper.condenseExits(root)) {
-        break;
+      if (!(isInitializer || !ExitHelper.condenseExits(root))) {
+    	  continue;
       }
 
       // FIXME: !!
-      //			if(!EliminateLoopsHelper.eliminateLoops(root)) {
-      //				break;
-      //			}
+      			if(!EliminateLoopsHelper.eliminateLoops(root)) {
+      				break;
+      			}
     }
 
     ExitHelper.removeRedundantReturns(root);
